@@ -1,36 +1,170 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## **Project Overview**
 
-## Getting Started
+This repository contains the source code for our website. The project follows a structured workflow designed to keep development organized, maintain clean code, and ensure smooth deployment to production.
 
-First, run the development server:
+---
+
+## **Project Structure**
+
+```
+website-achtrex/
+│
+├── app/ # Next.js App Router root
+│ ├── layout.tsx # Root layout
+│ ├── page.tsx # Homepage
+│ │
+│ ├── about-us/ # About Us page
+│ │ └── page.tsx
+│ │
+│ ├── services/ # Services page
+│ │ └── page.tsx
+│ │
+│ ├── contact/ # Contact page
+│ │ └── page.tsx
+│ │
+│ ├── life-at-achtrex/ # Life at Achtrex page
+│ │ └── page.tsx
+│ │
+│ ├── portfolio/ # Portfolio page
+│ └── page.tsx
+│
+├── components/ # Reusable UI components
+│
+├── lib/ # Helper utilities, configs
+│
+├── hooks/ # Custom React hooks
+│
+├── public/ # Static assets
+│
+├── styles/ # Additional global styles
+│
+├── .env.example # Example environment variables
+│
+├── package.json # Dependencies and scripts
+│
+└── README.md # Documentation
+```
+
+---
+
+## **🛠️ Getting Started**
+
+### **1. Clone the Repository**
+
+```bash
+git clone <repository-url>
+cd project-folder
+```
+
+### **2. Install Dependencies**
+
+```bash
+npm install
+```
+
+or
+
+```bash
+yarn install
+```
+
+### **3. Set Up Environment Variables**
+
+Copy the example file and fill in your credentials:
+
+```bash
+cp .env.example .env.local
+```
+
+Update variables inside `.env.local` based on your environment.
+
+### **4. Run the Development Server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit:
+👉 **[http://localhost:3000](http://localhost:3000)**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## **Branching Strategy**
 
-## Learn More
+Our development process uses four main branches:
 
-To learn more about Next.js, take a look at the following resources:
+### **📌 Main Branches**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **`main`** → Production-ready code only
+* **`dev`** → Pre-production branch. All approved work goes here before going live.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Developer Branches**
 
-## Deploy on Vercel
+* **`elvis`** → Elvis' working branch
+* **`ben`** → Ben's working branch
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Developers should write and test code on their own branch.
+No direct commit should go to `dev` or `main`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## **🧭 Branch Rules**
+
+### **1. Never push directly to `main` or `dev`**
+
+All updates must come through Pull Requests.
+
+### **2. Workflow**
+
+1. **Pull the latest `dev` branch**
+
+   ```bash
+   git checkout dev
+   git pull
+   ```
+2. **Switch to your branch and merge**
+
+   ```bash
+   git checkout elvis     # or ben
+   git merge dev
+   ```
+3. Do your work, then push:
+
+   ```bash
+   git push origin elvis
+   ```
+4. Create a **Pull Request → elvis → dev**
+5. Code will be reviewed before merging into `dev`
+
+### **3. Deployment Flow**
+
+```
+elvis / ben  →  dev  →  main (production)
+```
+
+### **4. Commit Message Guidelines**
+
+Use clean, descriptive commit messages:
+
+* `feat: add sidebar navigation`
+* `fix: resolve login redirect bug`
+* `refactor: cleanup user service`
+* `chore: update dependencies`
+
+### **5. PR Rules**
+
+* At least **1 approval** required
+* Must pass build + lint checks
+* Screenshots/videos required for UI changes
+* No console.logs, debugger statements, or unused imports
+
+---
+
+## **🚀 Production Deployment**
+
+Only code merged into `main` is deployed.
+Merges into `main` should only happen after:
+
+* Testing on the `dev` branch
+* Approval from the team
+* No critical issues detected
