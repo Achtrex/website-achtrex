@@ -9,36 +9,36 @@ This repository contains the source code for our website. The project follows a 
 ```
 website-achtrex/
 │
-├── app/ # Next.js App Router root
-│ ├── layout.tsx # Root layout
-│ ├── page.tsx # Homepage
+├── app/            # Next.js App Router root
+│ ├── layout.tsx    # Root layout
+│ ├── page.tsx      # Homepage
 │ │
-│ ├── about-us/ # About Us page
+│ ├── about-us/     # About Us page
 │ │ └── page.tsx
 │ │
-│ ├── services/ # Services page
+│ ├── services/     # Services page
 │ │ └── page.tsx
 │ │
-│ ├── contact/ # Contact page
+│ ├── contact/      # Contact page
 │ │ └── page.tsx
 │ │
 │ ├── life-at-achtrex/ # Life at Achtrex page
 │ │ └── page.tsx
 │ │
-│ ├── portfolio/ # Portfolio page
+│ ├── portfolio/    # Portfolio page
 │ └── page.tsx
 │
-├── components/ # Reusable UI components
+├── components/     # Reusable UI components
 │
-├── lib/ # Helper utilities, configs
+├── utilities/      # Helper utilities, configs
 │
-├── hooks/ # Custom React hooks
+├── hooks/          # Custom React hooks
 │
-├── public/ # Static assets
+├── public/         # Static assets
 │
-├── styles/ # Additional global styles
+├── styles/         # Additional global styles
 │
-├── .env.example # Example environment variables
+├── .env.example    # Example environment variables
 │
 ├── package.json # Dependencies and scripts
 │
