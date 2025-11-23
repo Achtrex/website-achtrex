@@ -7,6 +7,7 @@ import { CTASection } from "@/components/cta";
 import { AboutSection } from "@/components/home-page/about-section";
 import { FAQSection } from "@/components/home-page/faq";
 import ContactForm from "@/components/home-page/contact-form";
+import ContactDetails from "@/components/home-page/contact-details";
 import { Footer } from "@/components/footer";
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
       <AboutSection />
       <FAQSection />
       <ContactForm />
+      <ContactDetails />
       <Footer />
     </div>
   );

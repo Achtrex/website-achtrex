@@ -1,24 +1,53 @@
+import Image from "next/image";
 import { Button } from "@/components/buttons";
 
 export const AboutSection = () => {
     return (
-        <section id="about" className="py-20 px-4 bg-cyan-500 text-white">
-            <div className="max-w-6xl mx-auto">
+        <section id="about" className="py-20 px-4 bg-[#2496B3] text-white">
+            <div className="max-w-7xl mx-auto">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="bg-gray-200 rounded-lg overflow-hidden h-96">
-                        <div className="w-full h-full flex items-center justify-center text-gray-400">
-                            Team Photo
-                        </div>
+                    <div className="relative h-[600px] w-full rounded-3xl overflow-hidden">
+                        <Image
+                            src="/life-at-achtrex/Rectangle 789.png"
+                            alt="Team working together"
+                            fill
+                            className="object-cover"
+                        />
                     </div>
-                    <div>
-                        <h2 className="text-4xl font-bold mb-6">Life At Archtrex</h2>
-                        <p className="text-lg mb-4 opacity-90">Driven by passion. United by purpose.</p>
-                        <p className="mb-6 opacity-90">
-                            At Archtrex, we believe in creating an environment where innovation thrives
-                            and every team member can reach their full potential. Our culture is built
-                            on collaboration, continuous learning, and a shared commitment to excellence.
-                        </p>
-                        <Button variant="outline">Learn More</Button>
+                    <div className="space-y-6">
+                        <h2 className="text-5xl font-bold mb-2">Life At Achtrex</h2>
+                        <h3 className="text-2xl font-bold mb-6">Driven by passion. United by purpose.</h3>
+
+                        <div className="space-y-6 text-base leading-relaxed opacity-90 font-light">
+                            <p>
+                                At Achtrex, we're a family of thinkers, builders, and dreamers who believe in
+                                doing ordinary things extraordinarily well. We combine dedication, creativity,
+                                and technical expertise to craft digital experiences that help brands thrive
+                                across the world.
+                            </p>
+                            <p>
+                                Our team is made up of bold innovators who embrace modern tools and
+                                forward-thinking strategies — from designing and developing user-focused
+                                websites, to crafting SEO-optimized content and creating visuals that tell
+                                your story with clarity and impact.
+                            </p>
+                            <p>
+                                What makes us different is how we work together. We value collaboration,
+                                curiosity, and constant learning. Every project at Achtrex is a shared journey,
+                                and every success, a celebration of teamwork.
+                            </p>
+                            <p>
+                                When we work with you, your goals become our mission. We go beyond
+                                delivery, we build lasting relationships, offer continued support, and ensure
+                                your digital presence doesn't just exist, but evolves.
+                            </p>
+                        </div>
+
+                        <div className="pt-4">
+                            <button className="bg-white text-[#2496B3] hover:bg-gray-100 transition-colors font-bold py-3 px-8 rounded-full text-lg shadow-md">
+                                Learn More
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

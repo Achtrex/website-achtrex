@@ -29,7 +29,7 @@ export const Hero = () => {
     };
 
     return (
-        <section className="relative pt-32 pb-12 px-6 overflow-hidden">
+        <section className="relative pt-24 md:pt-32 pb-12 px-6 overflow-hidden">
             {/* We turn the container into a motion.div to control the sequence */}
             <motion.div
                 className="max-w-6xl mx-auto text-center"
@@ -44,7 +44,7 @@ export const Hero = () => {
                     variants={itemVariants}
                     className="inline-flex items-center justify-center bg-white px-4 py-2 rounded-full mb-8 w-auto h-[42px]"
                 >
-                    <span className="font-manrope font-medium text-2xl leading-[150%] text-center tracking-[-0.025em] bg-gradient-to-r from-[#EE982D] to-[#00A58F] bg-clip-text text-transparent">
+                    <span className="font-manrope font-medium text-lg md:text-2xl leading-[150%] text-center tracking-[-0.025em] bg-gradient-to-r from-[#EE982D] to-[#00A58F] bg-clip-text text-transparent">
                         Bold Ideas. Global Impact.
                     </span>
                 </motion.div>
@@ -52,7 +52,7 @@ export const Hero = () => {
                 {/* Item 2: The Headline */}
                 <motion.h1
                     variants={itemVariants}
-                    className="text-head1 font-manrope font-bold text-black leading-[120%] text-center tracking-[-0.05em] mb-6 max-w-[1277px] mx-auto"
+                    className="text-4xl md:text-head1 font-manrope font-bold text-black leading-[120%] text-center tracking-[-0.05em] mb-6 max-w-[1277px] mx-auto"
                 >
                     Empowering Digital Transformation<br />
                     Let's Go The{' '}
@@ -64,7 +64,7 @@ export const Hero = () => {
                 {/* Item 3: The Description */}
                 <motion.p
                     variants={itemVariants}
-                    className="text-lg md:text-md text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed"
+                    className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed"
                 >
                     We are a software development company specializing in custom software development,
                     web and mobile app development, and IT consulting services to help businesses thrive
@@ -73,7 +73,7 @@ export const Hero = () => {
 
                 {/* Item 4: The Button */}
                 <motion.div variants={itemVariants}>
-                    <Button size="lg" className="shadow-2xl">
+                    <Button size="lg" className="shadow-2xl w-full md:w-auto">
                         Get Started Today
                     </Button>
                 </motion.div>
