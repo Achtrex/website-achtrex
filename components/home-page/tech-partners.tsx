@@ -1,6 +1,8 @@
-import { GithubIcon } from 'lucide-react';
+'use client'
+
 import { SectionTitle } from '@/components/section-title';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export const TechPartners = () => {
     const logos = [
@@ -14,20 +16,75 @@ export const TechPartners = () => {
         { name: 'Partner', icon: <Image src="/logos/image 9.png" alt="Partner" width={120} height={40} className="h-10 w-auto object-contain" /> },
     ];
 
+    // Duplicate logos to ensure seamless loop for marquee
+    const marqueeLogos = [...logos, ...logos];
+
     return (
-        <section id="technology" className="py-20 px-6">
-            <div className="max-w-6xl mx-auto">
+        <section id="technology" className="py-12 md:py-20 px-0 md:px-6 overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 md:px-0">
                 <SectionTitle className='font-red-hat-display font-black'>Our Technology and Partners</SectionTitle>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center justify-items-center opacity-70 hover:opacity-100 transition-opacity">
-                    {logos.map((logo, index) => (
-                        <div
-                            key={index}
-                            className="flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer grayscale hover:grayscale-0"
-                        >
-                            {logo.icon}
-                        </div>
-                    ))}
+            </div>
+
+            {/* Mobile Marquee */}
+            <div className="relative w-full mt-10 md:hidden">
+                {/* Gradient Masks for "Blurred" Ends */}
+                <div className="absolute inset-y-0 left-0 w-20 bg-linear-to-r from-white to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute inset-y-0 right-0 w-20 bg-linear-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+                {/* Marquee Track */}
+                <div className="flex overflow-hidden w-full max-w-full">
+                    <motion.div
+                        className="flex gap-12 items-center flex-nowrap pr-12"
+                        animate={{ x: "-100%" }}
+                        transition={{
+                            duration: 20,
+                            ease: "linear",
+                            repeat: Infinity,
+                        }}
+                        style={{ width: "fit-content" }}
+                    >
+                        {marqueeLogos.map((logo, index) => (
+                            <div
+                                key={index}
+                                className="shrink-0 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 hover:scale-110 cursor-pointer"
+                            >
+                                {logo.icon}
+                            </div>
+                        ))}
+                    </motion.div>
+                    <motion.div
+                        className="flex gap-12 items-center flex-nowrap pr-12"
+                        animate={{ x: "-100%" }}
+                        transition={{
+                            duration: 20,
+                            ease: "linear",
+                            repeat: Infinity,
+                        }}
+                        style={{ width: "fit-content" }}
+                        aria-hidden="true"
+                    >
+                        {marqueeLogos.map((logo, index) => (
+                            <div
+                                key={`clone-${index}`}
+                                className="shrink-0 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 hover:scale-110 cursor-pointer"
+                            >
+                                {logo.icon}
+                            </div>
+                        ))}
+                    </motion.div>
                 </div>
+            </div>
+
+            {/* Desktop Grid */}
+            <div className="hidden md:grid grid-cols-4 gap-12 items-center justify-items-center opacity-70 hover:opacity-100 transition-opacity max-w-6xl mx-auto mt-10">
+                {logos.map((logo, index) => (
+                    <div
+                        key={index}
+                        className="flex items-center justify-center hover:scale-110 transition-transform duration-300 cursor-pointer grayscale hover:grayscale-0"
+                    >
+                        {logo.icon}
+                    </div>
+                ))}
             </div>
         </section>
     );

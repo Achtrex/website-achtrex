@@ -1,7 +1,22 @@
+import { CTASection } from "@/components/cta";
+import ContactDetails from "@/components/home-page/contact-details";
+import ContactForm from "@/components/home-page/contact-form";
+import { FAQSection } from "@/components/home-page/faq";
+
 export default function ContactUsPage() {
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <h1 className="text-4xl font-bold">Contact Us</h1>
-        </div>
+        <main className="pt-24 bg-gray-50">
+            {/* Contact Form Section */}
+            <ContactForm />
+
+            {/* Contact Details Section */}
+            <ContactDetails />
+
+            {/* FAQ Section */}
+            <FAQSection />
+
+            {/* CTA Section */}
+            <CTASection />
+        </main>
     );
 }

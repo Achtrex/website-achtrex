@@ -1,84 +1,109 @@
-'use client'; // Needed if using Next.js App Router
+'use client';
 
 import { Button } from '@/components/buttons';
 import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 export const Hero = () => {
-    // Animation configurations
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2, // Delays each child by 0.2s for a ripple effect
-                delayChildren: 0.1,
-            },
-        },
-    };
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLElement>(null);
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 20 }, // Start slightly below and invisible
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6, // Smooth duration
-                ease: [0.22, 1, 0.36, 1] as const, // Custom "cubic-bezier" for a premium feel
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
             },
-        },
-    };
+            { threshold: 0.1 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
-        <section className="relative pt-24 md:pt-32 pb-12 px-6 overflow-hidden">
-            {/* We turn the container into a motion.div to control the sequence */}
-            <motion.div
-                className="max-w-6xl mx-auto text-center"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }} // Animates only once when 30% is visible
-            >
+        <section
+            ref={sectionRef}
+            className={`relative pt-24 md:pt-32 pb-12 px-6 overflow-hidden ${isVisible ? 'hero-visible' : ''}`}
+        >
+            {/* Background Columns */}
+            <div className="absolute inset-0 -z-10 flex pointer-events-none" aria-hidden="true">
+                {[...Array(5)].map((_, i) => (
+                    <div
+                        key={i}
+                        className="flex-1 h-full bg-gray-50 dark:bg-neutral-900/50 column-animate"
+                        style={{
+                            animationDelay: `${i * 0.1}s`,
+                        }}
+                    />
+                ))}
+            </div>
+
+            <div className="max-w-6xl mx-auto text-center">
 
                 {/* Item 1: The Badge */}
-                <motion.div
-                    variants={itemVariants}
-                    className="inline-flex items-center justify-center bg-white px-4 py-2 rounded-full mb-8 w-auto h-[42px]"
+                <div
+                    className="hero-animate inline-flex items-center justify-center bg-white px-4 py-2 rounded-full mb-8 w-auto h-[42px]"
+                    style={{ animationDelay: '0.1s' }}
                 >
                     <span className="font-manrope font-medium text-lg md:text-2xl leading-[150%] text-center tracking-[-0.025em] bg-gradient-to-r from-[#EE982D] to-[#00A58F] bg-clip-text text-transparent">
                         Bold Ideas. Global Impact.
                     </span>
-                </motion.div>
+                </div>
 
                 {/* Item 2: The Headline */}
-                <motion.h1
-                    variants={itemVariants}
-                    className="text-4xl md:text-head1 font-manrope font-bold text-black leading-[120%] text-center tracking-[-0.05em] mb-6 max-w-[1277px] mx-auto"
+                <h1
+                    className="hero-animate text-4xl md:text-head1 font-manrope font-bold text-black leading-[120%] text-center tracking-[-0.05em] mb-6 max-w-[1277px] mx-auto"
+                    style={{ animationDelay: '0.3s' }}
                 >
                     Empowering Digital Transformation<br />
                     Let's Go The{' '}
-                    <span className="text-primary">
-                        Extra Mile
+                    <span className="inline-block overflow-hidden h-[1.2em] align-bottom text-primary">
+                        {"Extra Mile".split("").map((char, index) => (
+                            <motion.span
+                                key={index}
+                                className="inline-block"
+                                initial={{ y: "-100%" }}
+                                whileInView={{ y: "0%" }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    duration: 0.5,
+                                    ease: [0.22, 1, 0.36, 1],
+                                    delay: 0.8 + index * 0.05,
+                                }}
+                            >
+                                {char === " " ? "\u00A0" : char}
+                            </motion.span>
+                        ))}
                     </span>
-                </motion.h1>
+                </h1>
 
                 {/* Item 3: The Description */}
-                <motion.p
-                    variants={itemVariants}
-                    className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed"
+                <p
+                    className="hero-animate text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed"
+                    style={{ animationDelay: '0.5s' }}
                 >
                     We are a software development company specializing in custom software development,
                     web and mobile app development, and IT consulting services to help businesses thrive
                     in the digital age.
-                </motion.p>
+                </p>
 
                 {/* Item 4: The Button */}
-                <motion.div variants={itemVariants}>
+                <div
+                    className="hero-animate"
+                    style={{ animationDelay: '0.7s' }}
+                >
                     <Button size="lg" className="shadow-2xl w-full md:w-auto">
                         Get Started Today
                     </Button>
-                </motion.div>
+                </div>
 
-            </motion.div>
+            </div>
         </section>
     );
 };

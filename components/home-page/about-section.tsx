@@ -1,24 +1,39 @@
+'use client';
+
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/buttons";
 
 export const AboutSection = () => {
     return (
-        <section id="about" className="py-20 px-4 bg-[#2496B3] text-white">
+        <section id="about" className="py-12 md:py-20 px-4 bg-[#2496B3] text-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative h-[600px] w-full rounded-3xl overflow-hidden">
+                <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="relative h-[400px] md:h-[600px] w-full rounded-3xl overflow-hidden"
+                    >
                         <Image
                             src="/life-at-achtrex/Rectangle 789.png"
                             alt="Team working together"
                             fill
                             className="object-cover"
                         />
-                    </div>
-                    <div className="space-y-6">
-                        <h2 className="text-5xl font-bold mb-2">Life At Achtrex</h2>
-                        <h3 className="text-2xl font-bold mb-6">Driven by passion. United by purpose.</h3>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="space-y-6"
+                    >
+                        <h2 className="text-4xl md:text-5xl font-bold mb-2">Life At Achtrex</h2>
+                        <h3 className="text-xl md:text-2xl font-bold mb-6">Driven by passion. United by purpose.</h3>
 
-                        <div className="space-y-6 text-base leading-relaxed opacity-90 font-light">
+                        <div className="space-y-4 md:space-y-6 text-base leading-relaxed opacity-90 font-light">
                             <p>
                                 At Achtrex, we're a family of thinkers, builders, and dreamers who believe in
                                 doing ordinary things extraordinarily well. We combine dedication, creativity,
@@ -44,11 +59,11 @@ export const AboutSection = () => {
                         </div>
 
                         <div className="pt-4">
-                            <button className="bg-white text-[#2496B3] hover:bg-gray-100 transition-colors font-bold py-3 px-8 rounded-full text-lg shadow-md">
+                            <button className="bg-white text-[#2496B3] hover:bg-gray-100 transition-colors font-bold py-3 px-8 rounded-full text-lg shadow-md w-full md:w-auto">
                                 Learn More
                             </button>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>
