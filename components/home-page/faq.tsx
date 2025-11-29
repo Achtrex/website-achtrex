@@ -40,48 +40,65 @@ export const FAQSection = () => {
 
   const faqs = [
     {
-      question: "What kind of care and support do you provide?",
-      answer: "We offer a wide range of services, including daily assistance, medical support, companionship, and emotional care. Our goal is to enhance the quality of life for seniors and vulnerable individuals by tailoring our services to meet their unique needs."
+      question: "What services does Achtrex provide?",
+      answer: "We offer a comprehensive range of digital services including custom software development, mobile app development, web design and development, UI/UX design, and digital transformation consulting. We help businesses turn their ideas into scalable, market-ready products."
     },
     {
-      question: "How do you tailor your services to individual needs?",
-      answer: "We conduct a thorough assessment of each client's needs, preferences, and medical requirements to create a personalized care plan that evolves as their needs change."
+      question: "How do you handle project pricing and estimation?",
+      answer: "We provide transparent pricing based on the scope and complexity of your project. After an initial consultation to understand your requirements, we offer a detailed proposal outlining the costs, timeline, and deliverables, ensuring there are no hidden surprises."
     },
     {
-      question: "How do you tailor your services to individual needs?",
-      answer: "Our team works closely with families and healthcare providers to ensure that every aspect of care is customized, from daily schedules to specific medical interventions."
+      question: "Do you work with startups and early-stage companies?",
+      answer: "Yes, we love working with startups! We specialize in helping founders validate their ideas, build MVPs (Minimum Viable Products), and scale their technology as they grow. Our partnership approach is designed to support you from concept to launch and beyond."
     },
     {
-      question: "How do you tailor your services to individual needs?",
-      answer: "We believe in a holistic approach, considering not just physical needs but also emotional and social well-being to provide truly comprehensive support."
+      question: "What is your development process like?",
+      answer: "We follow an agile development methodology that emphasizes collaboration and flexibility. Our process includes discovery, design, development, testing, and deployment, with regular check-ins and demos to ensure the product aligns with your vision at every stage."
     },
     {
-      question: "How do you tailor your services to individual needs?",
-      answer: "Regular reviews and open communication allow us to adjust our services promptly, ensuring that we always provide the most appropriate and effective care."
+      question: "How do we get started with a project?",
+      answer: "Getting started is simple. You can reach out to us through our contact form or book a consultation. We'll schedule a discovery call to discuss your project goals, technical needs, and timeline, and then propose a tailored solution to move forward."
     }
   ];
 
   return (
-    <section className="py-24 px-4 bg-white">
+    <section id="faq" className="py-12 md:py-24 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-12 gap-12">
-          {/* Left Column - Title & Description */}
-          <div className="md:col-span-5">
-            <h2 className="text-4xl font-bold mb-8 text-gray-900 font-red-hat-display">Frequently Asked Questions (FAQ)</h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              We address some of the most common questions about our team, services, and approach to care. Whether you're seeking information about our compassionate care for seniors and vulnerable individuals, or curious about our Senior Consultant and the expertise we bring to every client
+        <div className="grid md:grid-cols-12 gap-8 md:gap-12">
+          {/* Left Column - Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="md:col-span-4 space-y-6"
+          >
+            <span className="text-lg text-gray-600 font-medium">FAQ</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight font-red-hat-display">
+              Frequently asked questions
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              We know you have some questions in mind, we have tried to list the most important ones.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Right Column - FAQ Items */}
-          <div className="md:col-span-7">
+          {/* Right Column - Accordion */}
+          <div className="md:col-span-8 space-y-4">
             {faqs.map((faq, index) => (
-              <FAQItem
+              <motion.div
                 key={index}
-                {...faq}
-                isOpen={index === openIndex}
-                onClick={() => setOpenIndex(index === openIndex ? null : index)}
-              />
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <FAQItem
+                  question={faq.question}
+                  answer={faq.answer}
+                  isOpen={openIndex === index}
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                />
+              </motion.div>
             ))}
           </div>
         </div>

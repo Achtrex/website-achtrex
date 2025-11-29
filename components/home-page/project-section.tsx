@@ -11,8 +11,8 @@ export const ProjectCard = ({ title, description, link, image, reverse = false }
             {/* Image Side */}
             <motion.div
                 className="w-full lg:w-1/2 h-[400px] lg:h-[600px] relative"
-                initial={{ opacity: 0, scale: 1.1 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
@@ -53,10 +53,10 @@ export const ProjectCard = ({ title, description, link, image, reverse = false }
 export const ProjectsSection = () => {
     const projects = [
         {
-            title: 'Opticar.AI',
-            description: 'We partnered with Opticar.AI to provide IT consultation and SEO analytics services. Our team conducted a full-scale performance audit, optimized their digital strategy for visibility, and implemented data-driven SEO solutions to boost their online reach and search rankings',
+            title: 'Carkasa',
+            description: 'We partnered with Carkasa to build a trusted car marketplace in Ghana. We helped them convert an idea into a brand where users can verify vehicle history, browse listings, and buy confidently, establishing a new standard for trust in the local automotive market.',
             link: '#',
-            image: '/projects/opticar.png'
+            image: '/projects/carkasa.png'
         },
         {
             title: 'Africa Auto Connect',
@@ -66,10 +66,10 @@ export const ProjectsSection = () => {
             image: '/projects/auto-connect.png'
         },
         {
-            title: 'Vehicle Databases',
-            description: 'We collaborated with VehicleDatabases.com to streamline their account management systems and implement seamless API integration. Our team enhanced data flow between platforms, improved user access control, and ensured reliable performance across all connected services.',
+            title: 'Yach Telemedicine',
+            description: 'We collaborated with Yach Telemedicine to provide a safe online space for users to book consultations and access healthcare. We developed a secure platform that connects patients with doctors right from their smart devices, making quality healthcare accessible and convenient.',
             link: '#',
-            image: '/projects/vehicle-databases.png'
+            image: '/projects/yach-telemedicine.png'
         },
         {
             title: 'Global Solutions Software',

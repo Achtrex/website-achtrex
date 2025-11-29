@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 const cardVariants = {
     hidden: {
@@ -35,8 +36,43 @@ export function FeatureCard({
     title: string;
     description: string;
 }) {
+    const divRef = React.useRef<HTMLDivElement>(null);
+    const [position, setPosition] = React.useState({ x: 0, y: 0 });
+    const [opacity, setOpacity] = React.useState(0);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!divRef.current) return;
+
+        const div = divRef.current;
+        const rect = div.getBoundingClientRect();
+
+        setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    };
+
+    const handleFocus = () => {
+        setOpacity(1);
+    };
+
+    const handleBlur = () => {
+        setOpacity(0);
+    };
+
+    const handleMouseEnter = () => {
+        setOpacity(1);
+    };
+
+    const handleMouseLeave = () => {
+        setOpacity(0);
+    };
+
     return (
         <motion.div
+            ref={divRef}
+            onMouseMove={handleMouseMove}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
@@ -45,27 +81,58 @@ export function FeatureCard({
                 bg-[url('/Union.png')]
                 bg-no-repeat
                 bg-top
-                bg-contain
+                bg-[length:100%_auto]
                 w-full max-w-[280px]
-                pt-[115px]  
-                pb-10
+                h-[340px]
+                pt-[110px]  
+                pb-8
                 px-6
                 text-center
-                rounded-2xl
+                rounded-none
                 mx-auto
                 relative
+                group
+                border-none
             "
+            style={{
+                maskImage: "url('/Union.png')",
+                maskSize: "100% auto",
+                maskPosition: "top center",
+                maskRepeat: "no-repeat",
+                WebkitMaskImage: "url('/Union.png')",
+                WebkitMaskSize: "100% auto",
+                WebkitMaskPosition: "top center",
+                WebkitMaskRepeat: "no-repeat",
+                filter: "drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.08))"
+            }}
         >
+            <div
+                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+                style={{
+                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(0, 90, 176, 0.15), transparent 40%)`,
+                }}
+            />
+            <div
+                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+                style={{
+                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(0, 90, 176, 0.4), transparent 40%)`,
+                    maskImage: `linear-gradient(black, black) content-box, linear-gradient(black, black)`,
+                    WebkitMaskImage: `linear-gradient(black, black) content-box, linear-gradient(black, black)`,
+                    maskComposite: `exclude`,
+                    WebkitMaskComposite: `xor`,
+                }}
+            />
+
             {/* Icon */}
-            <div className="absolute top-[42px] left-1/2 -translate-x-1/2 w-12 h-12 flex items-center justify-center">
+            <div className="absolute top-[28px] left-1/2 -translate-x-1/2 w-12 h-12 flex items-center justify-center z-10">
                 <span className="text-5xl">{icon}</span>
             </div>
 
-            <h3 className="w-[237px] py-5 font-manrope font-semibold text-[32px] leading-[120%] tracking-[-0.05em] text-center text-black/90 mx-auto">
+            <h3 className="w-full py-2 font-manrope font-bold text-3xl leading-tight tracking-tight text-center text-black/90 mx-auto relative z-10">
                 {title}
             </h3>
 
-            <p className="w-[190px] font-normal text-base leading-[150%] tracking-[-0.025em] text-center text-black/70 mx-auto mt-2">
+            <p className="w-full font-normal text-base leading-relaxed text-center text-black/70 mx-auto mt-2 relative z-10">
                 {description}
             </p>
         </motion.div>

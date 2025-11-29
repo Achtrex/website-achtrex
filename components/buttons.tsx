@@ -10,7 +10,7 @@ export const Button = ({ children, variant = 'primary', size = 'md', className =
     };
 
     const sizes = {
-        sm: 'px-3 py-2 text-sm',
+        sm: 'px-3 py-1 text-sm',
         md: 'px-5 py-3 text-base',
         lg: 'px-5 py-4 text-lg'
     };
@@ -18,10 +18,11 @@ export const Button = ({ children, variant = 'primary', size = 'md', className =
     return (
         <button
             onClick={onClick}
-            className={`${baseStyles} ${variants[variant]}  ${sizes[size]} ${className}`}
+            className={`relative group overflow-hidden ${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
         >
-            {children}
+            <span className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] skew-x-12" />
+            <span className="relative z-10">{children}</span>
         </button>
     );
-    
+
 };

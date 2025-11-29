@@ -1,7 +1,15 @@
+import { CoreValues } from "@/components/life-at-achtrex/core-values";
+import { DayInLife } from "@/components/life-at-achtrex/day-in-life";
+import { PerksBenefits } from "@/components/life-at-achtrex/perks-benefits";
+import { CTASection } from "@/components/cta";
+
 export default function LifeAtAchtrexPage() {
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <h1 className="text-4xl font-bold">Life At Achtrex</h1>
-        </div>
+        <main className="pt-24 min-h-screen bg-white">
+            <CoreValues />
+            <DayInLife />
+            <PerksBenefits />
+            <CTASection />
+        </main>
     );
 }
