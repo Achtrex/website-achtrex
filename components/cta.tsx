@@ -3,8 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export const CTASection = () => {
+  const router = useRouter();
   return (
     <section className="relative py-20 md:py-32 px-4 overflow-hidden bg-primary">
       {/* Background Pattern */}
@@ -52,13 +54,11 @@ export const CTASection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <Link href="/contact-us`">
-            <button className="bg-white text-[#0052cc] hover:bg-gray-100 transition-colors font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:scale-105 transform duration-200">
-              Talk to Us Today
-            </button>
-          </Link>
+          <button onClick={() => router.push('/contact-us')} className="bg-white text-[#0052cc] hover:bg-gray-100 transition-colors font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:scale-105 transform duration-200">
+            Talk to Us Today
+          </button>
         </motion.div>
       </div>
-    </section>
+    </section >
   );
 };
