@@ -3,10 +3,12 @@
 import { Button } from '@/components/buttons';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export const Hero = () => {
     const [isVisible, setIsVisible] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
+    const router = useRouter();
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -98,7 +100,7 @@ export const Hero = () => {
                     className="hero-animate"
                     style={{ animationDelay: '0.7s' }}
                 >
-                    <Button size="lg" className="shadow-2xl w-full md:w-auto">
+                    <Button onClick={() => router.push('/contact-us')} size="lg" className="shadow-2xl w-full md:w-auto">
                         Get Started Today
                     </Button>
                 </div>

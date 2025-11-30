@@ -12,7 +12,7 @@ const teamMembers = [
         image: "/about-us/members/achim.jpg",
     },
     {
-        name: "Dr. Emmanuel Yeboah-Appiah",
+        name: "Dr. Emmanuella Y.Appiah",
         role: "CFO",
         image: "/about-us/members/emmanuella.jpg",
     },

@@ -38,10 +38,10 @@ export const Footer = () => {
                         <div>
                             <h3 className="font-bold text-lg mb-6">Company</h3>
                             <ul className="space-y-4 text-gray-400">
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">About Us</Link></li>
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">Careers</Link></li>
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">Blog</Link></li>
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">Contact</Link></li>
+                                <li><Link href="/about-us" className="hover:text-[#2496B3] transition-colors">About Us</Link></li>
+                                <li><Link href="/life-at-achtrex" className="hover:text-[#2496B3] transition-colors">Careers</Link></li>
+                                <li><Link href="/blog" className="hover:text-[#2496B3] transition-colors">Blog</Link></li>
+                                <li><Link href="/contact-us" className="hover:text-[#2496B3] transition-colors">Contact</Link></li>
                             </ul>
                         </div>
 
@@ -49,10 +49,10 @@ export const Footer = () => {
                         <div>
                             <h3 className="font-bold text-lg mb-6">Services</h3>
                             <ul className="space-y-4 text-gray-400">
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">Web Dev</Link></li>
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">Mobile Apps</Link></li>
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">UI/UX Design</Link></li>
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">Consulting</Link></li>
+                                <li><Link href="/services" className="hover:text-[#2496B3] transition-colors">Web Dev</Link></li>
+                                <li><Link href="/services" className="hover:text-[#2496B3] transition-colors">Mobile Apps</Link></li>
+                                <li><Link href="/services" className="hover:text-[#2496B3] transition-colors">UI/UX Design</Link></li>
+                                <li><Link href="/services" className="hover:text-[#2496B3] transition-colors">Consulting</Link></li>
                             </ul>
                         </div>
 
@@ -60,10 +60,10 @@ export const Footer = () => {
                         <div>
                             <h3 className="font-bold text-lg mb-6">Resources</h3>
                             <ul className="space-y-4 text-gray-400">
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">Case Studies</Link></li>
+                                <li><Link href="/portfolio" className="hover:text-[#2496B3] transition-colors">Case Studies</Link></li>
                                 <li><Link href="#" className="hover:text-[#2496B3] transition-colors">Whitepapers</Link></li>
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">FAQs</Link></li>
-                                <li><Link href="#" className="hover:text-[#2496B3] transition-colors">Support</Link></li>
+                                <li><Link href="/contact-us" className="hover:text-[#2496B3] transition-colors">FAQs</Link></li>
+                                <li><Link href="/contact-us" className="hover:text-[#2496B3] transition-colors">Support</Link></li>
                             </ul>
                         </div>
                     </div>

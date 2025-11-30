@@ -1,6 +1,7 @@
 'use client'
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 export const CTASection = () => {
@@ -51,9 +52,11 @@ export const CTASection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <button className="bg-white text-[#0052cc] hover:bg-gray-100 transition-colors font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:scale-105 transform duration-200">
-            Talk to Us Today
-          </button>
+          <Link href="/contact-us`">
+            <button className="bg-white text-[#0052cc] hover:bg-gray-100 transition-colors font-bold py-4 px-10 rounded-full text-lg shadow-lg hover:scale-105 transform duration-200">
+              Talk to Us Today
+            </button>
+          </Link>
         </motion.div>
       </div>
     </section>

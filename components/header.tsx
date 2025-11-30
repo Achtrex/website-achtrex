@@ -5,10 +5,12 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/buttons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname();
+    const router = useRouter();
 
     const navLinks = [
         { label: 'Home', href: '/' },
@@ -56,7 +58,9 @@ export const Navbar = () => {
 
 
                 <div className="hidden lg:block">
-                    <Button size="sm">Request Quote</Button>
+                    <Link href="/contact-us">
+                        <Button size="sm" onClick={() => router.push('/contact-us')} >Request Quote</Button>
+                    </Link>
                 </div>
 
 
