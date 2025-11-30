@@ -2,9 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 export const AboutSection = () => {
+    const router = useRouter();
     return (
         <section id="about" className="py-12 md:py-20 px-4 bg-[#2496B3] text-white overflow-hidden">
             <div className="max-w-7xl mx-auto">
@@ -59,11 +61,9 @@ export const AboutSection = () => {
                         </div>
 
                         <div className="pt-4">
-                            <Link href="/life-at-achtrex">
-                                <button className="bg-white text-[#2496B3] hover:bg-gray-100 transition-colors font-bold py-3 px-8 rounded-full text-lg shadow-md w-full md:w-auto">
-                                    Learn More
-                                </button>
-                            </Link>
+                            <button onClick={() => router.push('/life-at-achtrex')} className="bg-white text-[#2496B3] hover:bg-gray-100 transition-colors font-bold py-3 px-8 rounded-full text-lg shadow-md w-full md:w-auto">
+                                Learn More
+                            </button>
                         </div>
                     </motion.div>
                 </div>
