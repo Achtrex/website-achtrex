@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Button } from "@/components/buttons";
+import Link from "next/link";
 
 export const AboutSection = () => {
     return (
@@ -59,9 +59,11 @@ export const AboutSection = () => {
                         </div>
 
                         <div className="pt-4">
-                            <button className="bg-white text-[#2496B3] hover:bg-gray-100 transition-colors font-bold py-3 px-8 rounded-full text-lg shadow-md w-full md:w-auto">
-                                Learn More
-                            </button>
+                            <Link href="/life-at-achtrex">
+                                <button className="bg-white text-[#2496B3] hover:bg-gray-100 transition-colors font-bold py-3 px-8 rounded-full text-lg shadow-md w-full md:w-auto">
+                                    Learn More
+                                </button>
+                            </Link>
                         </div>
                     </motion.div>
                 </div>

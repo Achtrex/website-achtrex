@@ -92,7 +92,7 @@ export const Navbar = () => {
                                     </Link>
                                 );
                             })}
-                            <Button size="sm" className="w-full mt-4">Request Quote</Button>
+                            <Button size="sm" className="w-full mt-4" onClick={() => router.push('/contact-us')}>Request Quote</Button>
                         </div>
                     </div>
                 )

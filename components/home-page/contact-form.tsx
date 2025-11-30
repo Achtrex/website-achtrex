@@ -1,9 +1,51 @@
 'use client';
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 
 const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    contact: "",
+    message: ""
+  });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: "", email: "", contact: "", message: "" });
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setStatus('error');
+    }
+  };
+
   return (
     <section id="contact" className="py-12 md:py-24 px-4">
       <div className="max-w-7xl mx-auto">
@@ -42,7 +84,7 @@ const ContactForm = () => {
         </div>
 
         {/* Form Section */}
-        <form className="space-y-12">
+        <form className="space-y-12" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -53,6 +95,10 @@ const ContactForm = () => {
               <label className="text-gray-600 text-base">Your Name</label>
               <input
                 type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
                 className="w-full py-3 border-b text-gray-500 border-gray-300 focus:border-[#2496B3] outline-none transition-colors bg-transparent"
               />
             </motion.div>
@@ -65,6 +111,10 @@ const ContactForm = () => {
               <label className="text-gray-600 text-base">Email Address</label>
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
                 className="w-full py-3 border-b text-gray-500 border-gray-300 focus:border-[#2496B3] outline-none transition-colors bg-transparent"
               />
             </motion.div>
@@ -77,6 +127,9 @@ const ContactForm = () => {
               <label className="text-gray-600 text-base">Phone Number (optional)</label>
               <input
                 type="tel"
+                name="contact"
+                value={formData.contact}
+                onChange={handleChange}
                 className="w-full py-3 border-b text-gray-500 border-gray-300 focus:border-[#2496B3] outline-none transition-colors bg-transparent"
               />
             </motion.div>
@@ -91,6 +144,10 @@ const ContactForm = () => {
             <label className="text-gray-600 text-base">Message</label>
             <textarea
               rows={1}
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              required
               className="w-full py-3 border-b text-gray-500 border-gray-300 focus:border-[#2496B3] outline-none transition-colors bg-transparent resize-none"
             ></textarea>
           </motion.div>
@@ -102,11 +159,18 @@ const ContactForm = () => {
           >
             <button
               type="submit"
-              className="bg-[#2496B3] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#1d7a91] transition-colors flex items-center gap-2"
+              disabled={status === 'loading'}
+              className="bg-[#2496B3] text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-[#1d7a91] transition-colors flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              Leave us a Message
+              {status === 'loading' ? 'Sending...' : 'Leave us a Message'}
               <span className="text-xl">→</span>
             </button>
+            {status === 'success' && (
+              <p className="mt-4 text-green-600">Message sent successfully!</p>
+            )}
+            {status === 'error' && (
+              <p className="mt-4 text-red-600">Failed to send message. Please try again.</p>
+            )}
           </motion.div>
         </form>
       </div>
