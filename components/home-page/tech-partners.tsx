@@ -32,17 +32,14 @@ export const TechPartners = () => {
                 <div className="absolute inset-y-0 right-0 w-20 bg-linear-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
                 {/* Marquee Track */}
-                <div className="flex overflow-hidden w-full max-w-full">
-                    <motion.div
-                        className="flex gap-12 items-center flex-nowrap pr-12"
-                        animate={{ x: "-100%" }}
-                        transition={{
-                            duration: 20,
-                            ease: "linear",
-                            repeat: Infinity,
+                <div className="overflow-hidden w-full">
+                    <div 
+                        className="flex items-center gap-16 animate-marquee"
+                        style={{
+                            width: 'max-content',
                         }}
-                        style={{ width: "fit-content" }}
                     >
+                        {/* First set of logos */}
                         {marqueeLogos.map((logo, index) => (
                             <div
                                 key={index}
@@ -51,27 +48,17 @@ export const TechPartners = () => {
                                 {logo.icon}
                             </div>
                         ))}
-                    </motion.div>
-                    <motion.div
-                        className="flex gap-12 items-center flex-nowrap pr-12"
-                        animate={{ x: "-100%" }}
-                        transition={{
-                            duration: 20,
-                            ease: "linear",
-                            repeat: Infinity,
-                        }}
-                        style={{ width: "fit-content" }}
-                        aria-hidden="true"
-                    >
+                        {/* Duplicate set for seamless loop */}
                         {marqueeLogos.map((logo, index) => (
                             <div
                                 key={`clone-${index}`}
                                 className="shrink-0 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 hover:scale-110 cursor-pointer"
+                                aria-hidden="true"
                             >
                                 {logo.icon}
                             </div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </div>
 
