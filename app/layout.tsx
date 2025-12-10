@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, Montserrat, Red_Hat_Display } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/header";
-import { Footer } from "@/components/footer";
-import FloatingWhatsApp from "@/components/floating-whatsapp";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -77,10 +74,7 @@ export default function RootLayout({
       <body
         className={`${manrope.variable} bg-gray-50 ${montserrat.variable} ${redHatDisplay.variable} antialiased`}
       >
-        <Navbar />
         {children}
-        <FloatingWhatsApp />
-        <Footer />
       </body>
     </html>
   );
