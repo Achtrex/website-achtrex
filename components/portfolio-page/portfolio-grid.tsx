@@ -52,7 +52,123 @@ const portfolioItems: PortfolioItem[] = [
     }
 ];
 
-const ScrollytellingProject = ({ project, index }: { project: PortfolioItem; index: number }) => {
+const StackedProject = ({ project, index }: { project: PortfolioItem; index: number }) => {
+    return (
+        <div className="relative min-h-screen flex flex-col">
+            {/* Image Section - Stacked on top for all screens */}
+            <div className="w-full h-[60vh] min-[1920px]:h-[55vh] relative">
+                <motion.div
+                    className="relative w-full h-full"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "-20%" }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        priority={index === 0}
+                    />
+                    {/* Overlay gradient for text readability */}
+                    <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/20 to-black/60" />
+
+                    {/* Project title overlay on image */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-12 xl:p-16">
+                        <div className="max-w-7xl mx-auto">
+                            <h3 className="text-3xl md:text-5xl lg:text-7xl font-red-hat-display font-bold text-white mb-2 lg:mb-4">
+                                {project.title}
+                            </h3>
+                            <p className="text-white/90 text-sm md:text-xl lg:text-2xl max-w-2xl">
+                                {project.description}
+                            </p>
+                        </div>
+                    </div>
+                </motion.div>
+            </div>
+
+            {/* Content Section - Below image */}
+            <div className="bg-white py-16 lg:py-24">
+                <div className="max-w-5xl mx-auto px-6">
+                    {/* Content Blocks */}
+                    <div className="grid grid-cols-1 gap-12 lg:gap-20">
+                        {/* Block 1: The Challenge */}
+                        <motion.div
+                            className="flex flex-col md:flex-row gap-6 md:gap-12"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-10%" }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                        >
+                            <div className="md:w-1/3 shrink-0">
+                                <div className="flex items-center mb-4">
+                                    <div className="w-3 h-3 rounded-full bg-secondary mr-4"></div>
+                                    <h4 className="text-2xl lg:text-3xl font-red-hat-display font-bold text-gray-900">
+                                        The Challenge
+                                    </h4>
+                                </div>
+                            </div>
+                            <div className="md:w-2/3">
+                                <p className="text-gray-600 text-lg lg:text-xl leading-relaxed">
+                                    {project.challenge}
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* Block 2: The Product/Solution */}
+                        <motion.div
+                            className="flex flex-col md:flex-row gap-6 md:gap-12"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-10%" }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                        >
+                            <div className="md:w-1/3 shrink-0">
+                                <div className="flex items-center mb-4">
+                                    <div className="w-3 h-3 rounded-full bg-primary mr-4"></div>
+                                    <h4 className="text-2xl lg:text-3xl font-red-hat-display font-bold text-gray-900">
+                                        The Product
+                                    </h4>
+                                </div>
+                            </div>
+                            <div className="md:w-2/3">
+                                <p className="text-gray-600 text-lg lg:text-xl leading-relaxed">
+                                    {project.product}
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        {/* Block 3: The Outcome */}
+                        <motion.div
+                            className="flex flex-col md:flex-row gap-6 md:gap-12"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-10%" }}
+                            transition={{ duration: 0.6, delay: 0.3 }}
+                        >
+                            <div className="md:w-1/3 shrink-0">
+                                <div className="flex items-center mb-4">
+                                    <div className="w-3 h-3 rounded-full bg-primary mr-4"></div>
+                                    <h4 className="text-2xl lg:text-3xl font-red-hat-display font-bold text-gray-900">
+                                        The Outcome
+                                    </h4>
+                                </div>
+                            </div>
+                            <div className="md:w-2/3">
+                                <p className="text-gray-600 text-lg lg:text-xl leading-relaxed">
+                                    {project.outcome}
+                                </p>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const SplitProject = ({ project, index }: { project: PortfolioItem; index: number }) => {
     return (
         <div className={`relative min-h-screen ${project.reverse ? 'lg:flex-row-reverse' : ''}`}>
             <div className="lg:flex lg:min-h-screen">
@@ -194,10 +310,17 @@ export const PortfolioGrid = () => {
                 </motion.div>
             </div>
 
-            {/* Scrollytelling Projects */}
+            {/* Projects */}
             <div className="bg-white">
                 {portfolioItems.map((project, index) => (
-                    <ScrollytellingProject key={index} project={project} index={index} />
+                    <div key={index}>
+<div className="block lg:hidden min-[1920px]:!block">
+    <StackedProject project={project} index={index} />
+</div>
+<div className="hidden lg:block min-[1920px]:!hidden">
+    <SplitProject project={project} index={index} />
+</div>
+                    </div>
                 ))}
             </div>
         </section>

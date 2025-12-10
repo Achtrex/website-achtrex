@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
@@ -19,7 +20,7 @@
   --font-manrope: var(--font-manrope);
   --font-montserrat: var(--font-montserrat);
   --font-red-hat-display: var(--font-red-hat-display);
-
+  --font-display: var(--font-red-hat-display);
   --text-head1: var(--head1);
 
 }
@@ -110,4 +111,22 @@ body {
   100% {
     transform: translateX(100%);
   }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e5e7eb;
+  border-radius: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #d1d5db;
 }
